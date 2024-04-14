@@ -19,6 +19,8 @@ class GameEngine {
         this.options = options || {
             debugging: false,
         };
+
+        this.tick_count = 0;
     };
 
     init(ctx) {
@@ -85,7 +87,13 @@ class GameEngine {
         this.ctx.clearRect(0, 0, this.ctx.canvas.width, this.ctx.canvas.height);
 
         // Draw latest things first
+        /*
         for (let i = this.entities.length - 1; i >= 0; i--) {
+            this.entities[i].draw(this.ctx, this);
+        }
+        */
+
+        for (let i = 0; i < this.entities.length; i++) {
             this.entities[i].draw(this.ctx, this);
         }
     };
@@ -106,10 +114,21 @@ class GameEngine {
                 this.entities.splice(i, 1);
             }
         }
+
+        
     };
 
     loop() {
         this.clockTick = this.timer.tick();
+
+        const ticks_per_step = parseInt(document.getElementById("sim_speed").max) - parseInt(document.getElementById("sim_speed").value) + 2;
+
+        if (++this.tick_count % ticks_per_step !== 0) {
+            return;
+        }
+
+        this.tick_count = 0;
+
         this.update();
         this.draw();
     };

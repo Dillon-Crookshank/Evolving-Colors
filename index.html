@@ -3,15 +3,56 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Game Project Title Goes Here</title>
+    <title>Evolving Colors</title>
   
     <script type="text/javascript" src="./assetmanager.js"></script>
     <script type="text/javascript" src="./timer.js"></script>
-    <script type="text/javascript" src="./gameengine.js"></script>
     <script type="text/javascript" src="./util.js"></script>
+    <script type="text/javascript" src="./gameengine.js"></script>
+    <script type="text/javascript" src="./automata.js"></script>
+    <script type="text/javascript" src="./plant.js"></script>
+    <script type="text/javascript" src="./animat.js"></script>
+
     <script type="text/javascript" src="./main.js"></script>
+
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,400i,700&display=swap">
 </head>
 <body>
-    <canvas id="gameWorld" width="1024" height="768" style="background: white; border: 1px solid black" tabindex="0" autofocus></canvas>
+    <div class="flex-row">
+        <canvas id="gameWorld" width="601" height="601" style="background: white; border: 1px solid black" tabindex="0" autofocus></canvas>
+
+        <div class="flex-col" id="option-pane">
+            <input id="option" type="button" value="Reset Simulation" onclick="reset_sim()">
+            <input id="option" type="button" value="Add Plant" onclick="automata.add_plant()">
+            <input id="option" type="button" value="Add Animat" onclick="add_animat()">
+            <div class="flex-row" id="option">
+                <label for="sim_speed">Simulaiton Speed</label>
+                <input type="range" id="sim_speed" min="1" max="30" value="30" step="1">
+            </div>
+            <div class="flex-row" id="option">
+                <label for="plant_growth_speed">Plant Growth Speed</label>
+                <input type="range" id="plant_growth_speed" min="1" max="50" value="40" step="1">
+            </div>
+            <div class="flex-row" id="option">
+                <label for="hue_mutation_range">Hue Mutation Range</label>
+                <input type="range" id="hue_mutation_range" min="1" max="60" value="20" step="1">
+            </div>
+            <div class="flex-row" id="option">
+                <label for="animat_diet_range">Animat Diet Range</label>
+                <input type="range" id="animat_diet_range" min="1" max="60" value="30" step="1">
+            </div>
+            <div cless="flex-row" id="option">
+                <label for="walking_animat">Animats Move Randomly When no Plants Present</label>
+                <input type="checkbox" id="walking_animat">
+            </div>
+            <div class="flex-row" id="option">
+                <label for="adaptive_animat">Animats Can Adapt To Environment</label>
+                <input type="checkbox" id="adaptive_animat">
+            </div>
+            
+        </div>
+    </div>
+    
 </body>
 </html>

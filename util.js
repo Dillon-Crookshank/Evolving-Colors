@@ -1,5 +1,14 @@
 /** Global Parameters Object */
-const params = { };
+const params = { 
+    grid_size: 100,
+    cell_size: 5,
+    cell_inset: 1,
+    animat_base_energy: 100,
+    plant_nutrition_value: 10,
+    animat_reproduction_multiplier: 2,
+    animat_energy_consumption_per_step: 2,
+    animat_adaptation_constant: 5,
+};
 
 /**
  * @param {Number} n
@@ -57,3 +66,12 @@ window.requestAnimFrame = (() => {
 const getDistance = (p1, p2) => {
     return Math.sqrt(Math.pow(p2.x - p1.x, 2) + Math.pow(p2.y - p1.y, 2));
 };
+
+const wrap = (value, max) => {
+    return (value + max) % max;
+};
+
+const wrapped_difference = (value1, value2, max) => {
+    let diff = Math.abs(value1 - value2);
+    return Math.min(diff, max - diff);
+}
